@@ -8,7 +8,6 @@ except:
 from selenium import selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.remote.command import Command 
 from selenium.webdriver.support.ui import WebDriverWait 
 from selenium.webdriver.support import expected_conditions as EC 
 
@@ -41,8 +40,6 @@ class AddDeleteIndicators(unittest.TestCase):
 		self.driver.refresh()
 
 	def test_add_indicator_to_iList(self):
-		#self._create_iList()
-
 		login(self.driver)
 		create_iList(self.driver)
 		self.driver.refresh()
@@ -50,7 +47,7 @@ class AddDeleteIndicators(unittest.TestCase):
 		'''since we know the filter works from TestDataCatalogSearch, 
 		   we don't need to search filters again here. This will avoid 
 		   having to use WebDriverWait() which can sometimes cause
-		   conflict with jax requests.
+		   conflict with ajax requests.
 		'''
 		self.driver.get(S.CATALOG_FILTER_URL)
 
@@ -74,7 +71,6 @@ class AddDeleteIndicators(unittest.TestCase):
 		
 		self.assertEqual(indicator_from_search, indicator_in_iList)
 		sign_out(self.driver)
-		print 'test_add_indicator_to_iList'
 
 	def test_delete_indicator_from_iList(self):
 		login(self.driver)
@@ -102,8 +98,6 @@ class AddDeleteIndicators(unittest.TestCase):
 
 		self.assertEqual(empty_table_txt, 'No data available in table')
 		sign_out(self.driver)
-
-		print 'test_delete_indicator_from_iList'
 
 
 if __name__ == '__main__':

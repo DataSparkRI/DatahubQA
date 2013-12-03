@@ -24,10 +24,10 @@ class RegistrationForm(unittest.TestCase):
 	def tearDown(self):
 		self.driver.quit()
 
+	#utility to remove the test user, also verifies that the user was actually added to db
 	def _remove_test_user_from_db(self):
 		self.driver.get(S.ADMIN_LOGIN_PAGE)
 
-		#to run this test make sure to include a superuser login name and password
 		admin_username = self.driver.find_element_by_id('id_username')
 		admin_username.send_keys(S.SUPERUSER_USERNAME)
 
@@ -39,7 +39,7 @@ class RegistrationForm(unittest.TestCase):
 		self.driver.get(S.USERNAME_SEARCH_URL)
 		username_link = WebDriverWait(self.driver, 10).until(EC.visibility_of(self.driver.find_element_by_link_text('testtestspaceorg')))
 		
-		#ensures that this test name is actually in the db
+		#ensures that this test name is actually in the db 
 		self.assertEqual(username_link.text,'testtestspaceorg')
 
 		username_link.click()
@@ -53,7 +53,7 @@ class RegistrationForm(unittest.TestCase):
 		logout_btn = self.driver.find_element_by_css_selector('a[href="/admin/logout/"]')
 		logout_btn.click()
 
-
+	#submits new account info 
 	def test_create_new_account(self):
 		self.driver.get(S.NEW_ACCOUNT_PAGE)
 
@@ -83,7 +83,8 @@ class RegistrationForm(unittest.TestCase):
 
 		self._remove_test_user_from_db()
 
-def test_redirect_to_registration_page(self):
+	#ensures the registration page exists
+	def test_redirect_to_registration_page(self):
 		self.driver.get(S.HOME_PAGE)
 		register_btn = self.driver.find_element_by_css_selector('#account_actions a')
 		register_btn.click()

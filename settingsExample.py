@@ -3,7 +3,7 @@
 	
 	Usage:
 	*Be sure to change superuser and datahub user login info before testing
-	*Change HOME_PAGE url to whichever version of datahub you're working off of (local or production) 
+	*Change HOME_PAGE's url to whichever version of datahub you're working off of (local or production) 
 '''
 
 #Admin login: 
